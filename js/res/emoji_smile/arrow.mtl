@@ -1,0 +1,9 @@
+newmtl Material
+Ka 0.000000 0.000000 0.000000
+Kd 0.265324 0.853468 0.890196
+Ks 0.200000 0.200000 0.200000
+Ns 2.361985
+d 1.000000
+Tr 0.000000
+map_Kd Material - Default Texture0001.psd 
+

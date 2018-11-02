@@ -64,7 +64,7 @@ var localStyles = StyleSheet.create({
       paddingBottom:10,
       marginTop: 10,
       marginBottom: 10,
-      backgroundColor:'#79cab6',
+      backgroundColor:'#1ecfc9',
       borderRadius: 10,
       borderWidth: 1,
       borderColor: '#fff',

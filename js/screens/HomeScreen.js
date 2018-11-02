@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, Button, Image, StyleSheet } from 'react-native';
+import {YellowBox} from 'react-native';
 
 class LogoTitle extends React.Component {
   render() {
@@ -16,7 +17,7 @@ export default class HomeScreen extends React.Component {
   static navigationOptions = {
     headerTitle: <LogoTitle />,
     headerStyle: {
-      backgroundColor: '#79cab6',
+      backgroundColor: '#1ecfc9',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
@@ -26,6 +27,7 @@ export default class HomeScreen extends React.Component {
 
 
   render() {
+    YellowBox.ignoreWarnings(['Warning: ...']);
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           {/* other code from before here */}

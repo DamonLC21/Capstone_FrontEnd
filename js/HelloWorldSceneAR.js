@@ -89,6 +89,7 @@ console.log(placeObject({lat:39.75750899141228,lng:-105.00692868825644},{lat:39.
       </ViroARScene>
     );
   },
+
 });
 
 var styles = StyleSheet.create({

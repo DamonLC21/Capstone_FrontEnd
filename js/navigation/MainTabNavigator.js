@@ -8,6 +8,7 @@ import ARScreen from '../screens/ARScreen'
 import JoinSessionScreen from '../screens/JoinSessionScreen'
 import StartSessionScreen from '../screens/StartSessionScreen'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import LoginScreen from '../screens/LoginScreen';
 
   
   const HomeStack = createStackNavigator({
@@ -25,18 +26,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
   const ARStack = createStackNavigator({
       AR: ARScreen,
   });
-  
+
   export default createBottomTabNavigator(
     {
       Home: HomeStack,
       Profile: ProfileStack,
-      Finder: ARStack
+      Finder: ARStack,
     },{
         tabBarOptions : {
           activeTintColor: '#fff',
           inactiveTintColor: '#000',
           style: {
-            backgroundColor: '#79cab6',
+            backgroundColor: '#1ecfc9',
           },
         }
     }

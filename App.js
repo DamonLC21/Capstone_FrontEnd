@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { AppRegistry,Text,View,StyleSheet,PixelRatio,TouchableHighlight} from 'react-native';
 import AppNavigator from './js/navigation/AppNavigator';
 import { ViroARSceneNavigator} from 'react-viro';
+import LoginScreen from './js/screens/LoginScreen'
 var sharedProps = {apiKey:"E3229309-156A-4591-A7A2-73899A66E4A2"}
 var InitialARScene = require('./js/HelloWorldSceneAR');
 var UNSET = "UNSET";
 var AR_NAVIGATOR_TYPE = "AR";
 var defaultNavigatorType = UNSET;
+
+
 
 export default class ViroSample extends Component {
   constructor() {
@@ -27,8 +30,6 @@ export default class ViroSample extends Component {
   render() {
     if (this.state.navigatorType == UNSET) {
       return this._getExperienceSelector();
-    } else if (this.state.navigatorType == VR_NAVIGATOR_TYPE) {
-      return this._getVRNavigator();
     } else if (this.state.navigatorType == AR_NAVIGATOR_TYPE) {
       return this._getARNavigator();
     }
@@ -37,16 +38,8 @@ export default class ViroSample extends Component {
   // Presents the user with a choice of an AR or VR experience
   _getExperienceSelector() {
     return (
-      <AppNavigator />
-      // <View style={localStyles.outer} >
-      //   <View style={localStyles.inner} >
-      //     <TouchableHighlight style={localStyles.buttons}
-      //       onPress={this._getExperienceButtonOnPress(AR_NAVIGATOR_TYPE)}
-      //       underlayColor={'#68a0ff'} >
-      //       <Text style={localStyles.buttonText}>Find Friend</Text>
-      //     </TouchableHighlight>
-      //   </View>
-      // </View>
+      <LoginScreen />
+      // <AppNavigator />
     );
   }
 
