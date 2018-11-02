@@ -72,13 +72,13 @@ export default class ARScreen extends React.Component {
       flex : 1,
       flexDirection: 'row',
       alignItems:'center',
-      backgroundColor: "white",
+      backgroundColor: "#1a2327",
     },
     inner: {
       flex : 1,
       flexDirection: 'column',
       alignItems:'center',
-      backgroundColor: "white",
+      backgroundColor: "#1a2327",
     },
     titleText: {
       paddingTop: 30,

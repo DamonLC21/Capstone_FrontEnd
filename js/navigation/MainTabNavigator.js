@@ -35,9 +35,9 @@ import LoginScreen from '../screens/LoginScreen';
     },{
         tabBarOptions : {
           activeTintColor: '#fff',
-          inactiveTintColor: '#000',
+          inactiveTintColor: '#1ecfc9',
           style: {
-            backgroundColor: '#1ecfc9',
+            backgroundColor: '#1a2327',
           },
         }
     }

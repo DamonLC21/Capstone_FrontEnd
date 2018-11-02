@@ -6,8 +6,9 @@ export default class JoinSession extends Component {
         title:'Group Sessions',
         headerStyle: {
           backgroundColor: '#1ecfc9',
+          borderBottomWidth: 0,
         },
-        headerTintColor: '#fff',
+        headerTintColor: '#1a2327',
         headerTitleStyle: {
           fontWeight: 'bold',
         },
@@ -20,15 +21,16 @@ export default class JoinSession extends Component {
 
   render() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <View style={localStyles.container}>
             <TextInput
-                style={{width: 300, height: 40, borderColor: 'gray', borderWidth: 1}}
+                style={{width: 300, height: 40, borderColor: 'gray', borderWidth: 1, color:"#fff"}}
                 onChangeText={(text) => this.setState({text})}
                 value={this.state.text}
             />
              <Button
             title="Locate"
             onPress={() => this.props.navigation.navigate('Finder')}
+            color="#1ecfc9"
           />
         </View>
     );
@@ -37,8 +39,14 @@ export default class JoinSession extends Component {
 
 
 var localStyles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#1a2327"
+    },
     buttonText: {
-      color:'#fff',
+      color:'#1ecfc9',
       textAlign:'center',
       fontSize : 20
     },
@@ -49,7 +57,7 @@ var localStyles = StyleSheet.create({
       paddingBottom:10,
       marginTop: 10,
       marginBottom: 10,
-      backgroundColor:'#1ecfc9',
+      backgroundColor:'#1a2327',
       borderRadius: 10,
       borderWidth: 1,
       borderColor: '#fff',
