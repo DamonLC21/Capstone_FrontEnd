@@ -42,6 +42,7 @@ export default class LoginScreen extends React.Component {
                         placeholder="Password"
                         placeholderTextColor="white"
                         keyboardAppearance="dark"
+                        secureTextEntry={true}
                     />
                     <TouchableHighlight style={localStyles.buttons} 
                         underlayColor={'#68a0ff'}

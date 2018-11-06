@@ -16,7 +16,13 @@ export default class JoinSession extends Component {
     
   constructor(props) {
     super(props);
-    this.state = { text: 'Session Key' };
+    this.state = { 
+        text: '', 
+        location: null 
+    };
+
+        this._postLocation2 = this._postLocation2.bind(this)
+        this.newCoordinates = this.newCoordinates.bind(this)
   }
 
   render() {
@@ -25,16 +31,53 @@ export default class JoinSession extends Component {
             <TextInput
                 style={{width: 300, height: 40, borderColor: 'gray', borderWidth: 1, color:"#fff"}}
                 onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
+                placeholder="Session Key"
+                placeholderTextColor="white"
             />
              <Button
             title="Locate"
-            onPress={() => this.props.navigation.navigate('Finder')}
+            onPress={this.newCoordinates}
             color="#1ecfc9"
           />
         </View>
     );
   }
+
+    newCoordinates = () => {
+        return new Promise((resolve,reject) => {
+            navigator.geolocation.getCurrentPosition(
+             position => {
+                const location = position;
+                this.setState({ location });
+                resolve(location)
+            },
+            error => {
+                reject(error)
+                Alert.alert(error.message)
+            },
+                { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+            ) 
+        })
+        // .then(this._postLocation2)
+        .then(result => this._postLocation2(result))
+        .then(response => this.props.navigation.navigate('Finder'))
+  };
+  
+
+_postLocation2 = (location) => {
+        const id = this.state.text
+        const gps =  location
+        return fetch('https://seatscapstone.herokuapp.com/sessions/' + id , {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            location2: gps
+        })
+    })
+}
 }
 
 

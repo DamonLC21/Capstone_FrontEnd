@@ -16,8 +16,9 @@ export default class StartSession extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { text: 'blue',
-        location: null
+    this.state = { text: '',
+        location: null,
+        sessionName: ''
     };
     this._getKey = this._getKey.bind(this);
     this._postLocation = this._postLocation.bind(this);
@@ -52,6 +53,7 @@ findCoordinates = () => {
 
 _postLocation = () => {
         const gps =  this.state.location
+        const sesh = this.state.sessionName
         return fetch('https://seatscapstone.herokuapp.com/sessions', {
         method: 'POST',
         headers: {
@@ -59,25 +61,33 @@ _postLocation = () => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+            sessionName: sesh,
             location1: gps,
-            location2: {}
         })
-    }).then(request => request.json())
-    .then(data => {
-        this.setState({locationSaved: data})
     })
-};
+    .then(data => { 
+        const stuff = JSON.parse(data._bodyInit);
+        this.setState({text: stuff.session._id})
+    }
+    )
+}
 
 _getKey() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#1a2327" }}>
-        <Text style={{textAlign: 'center', marginBottom: 10, color:"#fff"}}>Your location is being shared. Copy this key and send to friends!</Text>
+        <Text style={{textAlign: 'center', marginBottom: 10, color:"#fff"}}>Your location is being shared. Name Session and press "GET CODE" below, copy, and send to friends to locate you!</Text>
             <TextInput
-            style={{width: 300, height: 40, borderColor: '#fff', borderWidth: 1, borderRadius:50,textAlign: 'center', color:'#fff'}}
-            value={this.state.text}
+                style={{width: 300, height: 40, borderColor: '#fff', borderWidth: 1, borderRadius:50,textAlign: 'center', color:'#fff'}}
+                placeholder='Enter Session Name'
+                placeholderTextColor='white'
+                onChangeText={(sessionName) => this.setState({sessionName})}
+            />
+            <TextInput
+                style={{width: 300, height: 40, borderColor: '#fff', borderWidth: 1, borderRadius:50,textAlign: 'center', color:'#fff'}}
+                value={this.state.text}
             />
             <TouchableHighlight style={localStyles.buttons} underlayColor={'#68a0ff'} onPress={this._postLocation} >
-                <Text style={localStyles.buttonText}>Share Location</Text>
+                <Text style={localStyles.buttonText}>Get Code</Text>
             </TouchableHighlight>
         </View>
     );

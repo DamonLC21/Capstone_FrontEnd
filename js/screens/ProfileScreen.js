@@ -15,7 +15,7 @@ export default class SettingsScreen extends React.Component {
                 style={{width:150, height: 150}}
             />
           <Button
-            title="Active Sessions"
+            title="End Active Session"
             onPress={() => this.props.navigation.navigate('Details')}
             color="#1ecfc9"
           />
