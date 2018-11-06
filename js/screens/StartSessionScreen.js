@@ -13,14 +13,14 @@ export default class StartSession extends Component {
             fontWeight: 'bold',
           },
       };
-    
+
   constructor(props) {
     super(props);
     this.state = { text: 'blue',
         location: null
     };
     this._getKey = this._getKey.bind(this);
-    this._changeText = this._changeText.bind(this);
+    this._postLocation = this._postLocation.bind(this);
   }
 
   render() {
@@ -28,9 +28,8 @@ export default class StartSession extends Component {
     return (
         <View style={localStyles.container}>
         <TouchableOpacity style={localStyles.buttons} underlayColor={'#68a0ff'} onPress={this.findCoordinates}>
-          <Text style={localStyles.buttonText}>Share Location</Text>
+          <Text style={localStyles.buttonText}>Start Session</Text>
         </TouchableOpacity>
-        <Text>Location: {this.state.location}</Text>
         </View>
         );
     }
@@ -42,20 +41,32 @@ export default class StartSession extends Component {
 findCoordinates = () => {
     navigator.geolocation.getCurrentPosition(
       position => {
-        const location = JSON.stringify(position);
-
+        const location = position;
         this.setState({ location });
       },
       error => Alert.alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
-    );
+    )
   };
+  
 
-_changeText() { 
-    return () => {
-        this.setState({text:'FJfj343NERD4909SH'})
-    }
-  }
+_postLocation = () => {
+        const gps =  this.state.location
+        return fetch('https://seatscapstone.herokuapp.com/sessions', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            location1: gps,
+            location2: {}
+        })
+    }).then(request => request.json())
+    .then(data => {
+        this.setState({locationSaved: data})
+    })
+};
 
 _getKey() {
     return (
@@ -65,10 +76,10 @@ _getKey() {
             style={{width: 300, height: 40, borderColor: '#fff', borderWidth: 1, borderRadius:50,textAlign: 'center', color:'#fff'}}
             value={this.state.text}
             />
-            <TouchableHighlight style={localStyles.buttons} underlayColor={'#68a0ff'} >
-                <Text style={localStyles.buttonText}>Copy</Text>
+            <TouchableHighlight style={localStyles.buttons} underlayColor={'#68a0ff'} onPress={this._postLocation} >
+                <Text style={localStyles.buttonText}>Share Location</Text>
             </TouchableHighlight>
-         </View>
+        </View>
     );
   }
 }

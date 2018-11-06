@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Button } from 'react-native';
+import { Text, View, Button, Image} from 'react-native';
 
 
 export default class SettingsScreen extends React.Component {
@@ -9,11 +9,15 @@ export default class SettingsScreen extends React.Component {
       
     render() {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          {/* other code from before here */}
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "#1a2327" }}>
+          <Image
+                source={require('../res/emoji_smile/placeholder.png')}
+                style={{width:150, height: 150}}
+            />
           <Button
-            title="Go to Details"
+            title="Active Sessions"
             onPress={() => this.props.navigation.navigate('Details')}
+            color="#1ecfc9"
           />
         </View>
       );

@@ -1,25 +1,24 @@
 import React from 'react';
-import { Text, View, Button, Image, TouchableHighlight, StyleSheet,ImageBackground } from 'react-native';
+import { Text,TextInput, View, Button, Image, TouchableHighlight, StyleSheet,ImageBackground } from 'react-native';
 import AppNavigator from '../navigation/AppNavigator';
+import { createStackNavigator } from 'react-navigation';
+import SignUpScreen from './SignUpScreen'
+import LoginForm from './LoginForm'
 
-export default class LoginScreen extends React.Component {
+class LoginScreen extends React.Component {
+    static navigationOptions = {
+        header: null,
+      };
     constructor(){
         super()
         this.state ={
             login: false
         }
-        this.getRealApp = this.getRealApp.bind(this)
         this.getApp = this.getApp.bind(this)
-        this.showPage = this.showPage.bind(this);
     }
  
     render() {
-        if (this.state.login == true) {
-            return this.getRealApp();
-        }
-        else if(this.state.login == false){
             return this.getApp();
-        }
 }
 
     getApp(){
@@ -37,25 +36,35 @@ export default class LoginScreen extends React.Component {
                />
                <TouchableHighlight style={localStyles.buttons} 
                    underlayColor={'#68a0ff'}
-                   onPress={() => this.showPage()}>
+                   onPress={() => this.props.navigation.navigate('LoginForm')}>
                <Text style={localStyles.buttonText}>Login</Text>
+               </TouchableHighlight>
+               <TouchableHighlight style={localStyles.buttons} 
+                   underlayColor={'#68a0ff'}
+                   onPress={() => this.props.navigation.navigate('SignUp')}>
+               <Text style={localStyles.buttonText}>Sign Up</Text>
                </TouchableHighlight>
            </View>
         </View>
             )
         }
     }
+  }
 
-    getRealApp(){
-        return (
-            <AppNavigator />
-        )
+  const RootStack = createStackNavigator(
+    {
+      Login: LoginScreen,
+      SignUp: SignUpScreen,
+      LoginForm: LoginForm
+    },
+    {
+      initialRouteName: 'Login',
     }
+  );
 
-    showPage(){
-          this.setState({
-              login:true
-            })
+  export default class App extends React.Component {
+    render() {
+      return <RootStack />;
     }
   }
 

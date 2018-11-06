@@ -7,7 +7,6 @@ import DetailsScreen from '../screens/DetailsScreen'
 import ARScreen from '../screens/ARScreen'
 import JoinSessionScreen from '../screens/JoinSessionScreen'
 import StartSessionScreen from '../screens/StartSessionScreen'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import LoginScreen from '../screens/LoginScreen';
 
   
