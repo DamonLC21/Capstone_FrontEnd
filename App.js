@@ -3,7 +3,7 @@ import { AppRegistry,Text,View,StyleSheet,PixelRatio,TouchableHighlight} from 'r
 import AppNavigator from './js/navigation/AppNavigator';
 import { ViroARSceneNavigator} from 'react-viro';
 import LoginScreen from './js/screens/LoginScreen'
-var sharedProps = {apiKey:"E3229309-156A-4591-A7A2-73899A66E4A2"}
+var sharedProps = {apiKey:""}
 var InitialARScene = require('./js/HelloWorldSceneAR');
 var UNSET = "UNSET";
 var AR_NAVIGATOR_TYPE = "AR";
